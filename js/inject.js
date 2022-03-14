@@ -6,10 +6,10 @@ window.onload = function () {
 	pageTitle = window.document.title
 	pageUrl = window.location.href
 
-	console.log('启明星辰安全检测中01...')
+	console.log('启明星辰安全检测中...')
 	console.log('当前页面名称：' + pageTitle)
 	console.log('当前页面地址：' + pageUrl)
-	console.log('启明星辰安全检测中01...')
+	console.log('启明星辰安全检测中...')
 
 	_host = window.location.protocol  == 'https:' ? _httpsHost : _httpHost
 
@@ -62,15 +62,7 @@ function _request (data) {
 		event: data.event,
 		content: data.content
 	}
-	$.ajax({
-		type: 'POST',
-		async: false,
-		url: `${_host}/accept/dealData`,
-		data: JSON.stringify(params),
-		success: function() {},
-		dataType: 'json',
-		contentType: 'application/json;charset=UTF-8'
-	});
+	chrome.runtime.sendMessage({params, host: _host});
 }
 
 
