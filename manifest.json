@@ -1,23 +1,33 @@
 {
-   "name": "zzw-tools",
-   "version": "1.0.1",
-   "description": "zzw-tools",
-   "permissions": ["tabs", "history", "windows", "http://*/*", "https://*/*", "storage", "fileSystem"],
-   "background": {
-     "scripts": ["background.js"],
-     "persistent": false
-   },
-   "content_scripts":
-    [
-      {
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["js/jquery.js", "js/inject.js"],
-        "run_at": "document_idle"
-      }
-    ],
-   "browser_action": {
-     "default_title": "zzw-tools"
-   },
-   "web_accessible_resources": ["js/inject.js"],
-   "manifest_version": 2
- }
+  "name": "zzw-tools",
+  "version": "1.0.1",
+  "description": "哟，既然安装了我，就足以证明你是个很有品味的人～",
+  "permissions": ["tabs", "history", "windows", "http://*/*", "https://*/*", "storage", "fileSystem"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+    //  "page": "background.html"
+  },
+  "browser_action": 
+  {
+    // 图标悬停时的标题，可选
+    "default_title": "zzw-tools",
+    "default_popup": "popup.html"
+  },
+  "content_scripts":
+  [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/jquery.js", "js/inject.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "chrome_url_overrides": {
+    // 覆盖浏览器默认的新标签页
+    "newtab": "newtab.html"
+  },
+  "omnibox": { "keyword" : "go" },
+  "options_page": "options.html",
+  "web_accessible_resources": ["js/inject.js"],
+  "manifest_version": 2
+}
